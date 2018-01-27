@@ -68,29 +68,42 @@ namespace Day2
 
             for (int rowIndex = 0; rowIndex < rowNumber; rowIndex++) {
 
-                //    int min = 0;
-                //    int max = 0;
+                int[] sorted = MergeSortDimension1(matrix, rowIndex);
+                int sortedIndex = sorted.Length - 1;
+                bool isFound = false;
 
-                //    for (int columnIndex = 0;columnIndex < columnNumber;columnIndex++) {
-                //        int value = matrix[rowIndex, columnIndex];
+                do {
+                    int comparisonIndex = 0;
 
-                //        if (value > 0) {
-                //            if (min == 0 || value < min) { min = value; }
-                //            if (max == 0 || value > max) { max = value; }
-                //            }
-                //        }
+                    do {
+                        isFound = sorted[sortedIndex] % sorted[comparisonIndex] == 0;
 
-                //    result += (max - min);
+                        if (isFound) {
+                            result += sorted[sortedIndex] / sorted[comparisonIndex];
+                        }
+
+                        comparisonIndex++;
+                    } while(!isFound && comparisonIndex < sortedIndex);
+
+                    sortedIndex--;
+                } while (!isFound && sortedIndex > 0);
             }
 
             return result;
+        }
+
+        public static int[] MergeSortDimension1(int[,] matrix, int rowIndex) {
+            int startIndex = 0;
+            int endIndex = matrix.GetLength(1) - 1;
+
+            return MergeSortDimension1(matrix, rowIndex, startIndex, endIndex);
         }
 
         public static int[] MergeSortDimension1(
             int[,] matrix, 
             int rowIndex, 
             int startIndex, 
-            int endIndex
+            int endIndex 
         ) {
             int highestIndex = matrix.GetLength(1) - 1;
 
