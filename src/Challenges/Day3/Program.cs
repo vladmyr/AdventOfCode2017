@@ -2,13 +2,53 @@
 
 namespace Day3
 {
+    public class RadiusMeta {
+        public static int CIRCUMFERENCE_COEF = 8;
+
+        public RadiusMeta InnerRadiusMeta { get; set; } = null;
+        public int Radius { get; set; }
+
+        public RadiusMeta(int radius) {
+            Radius = radius;
+        }
+
+        public static int CalcStartingIndex(int radius) {
+            int startingIndex = 0;
+
+            for (int i = 1; i <= radius; i++) {
+                startingIndex += CIRCUMFERENCE_COEF * i;
+            }
+
+            return startingIndex;
+        }
+
+        //public int[] CalcNeighbourPointIndexes(int index) {
+        //    int startingIndex = RadiusMeta.CalcStartingIndex(Radius);
+        //    int endingIndex = RadiusMeta.CalcStartingIndex(Radius + 1) - 1;
+
+        //    if (index < startingIndex || index > endingIndex) {
+        //        throw new Exception($"Index value {index} is out of range of radius with value {Radius}");
+        //    }
+
+
+        //}
+    }
+
     class Point {
         public int X { get; set; }
         public int Y { get; set; }
 
-        public Point (int X, int Y) {
-            this.X = X;
-            this.Y = Y;
+        public Point (int x, int y) {
+            X = x;
+            Y = y;
+        }
+    }
+
+    class PointValue : Point {
+        public int Value { get; set; }
+
+        public PointValue(int x, int y, int value) : base(x, y) {
+            Value = value;
         }
     }
 
@@ -16,18 +56,22 @@ namespace Day3
         public static int CIRCLE_CIRCUMFERENCE = 8;
 
         static void Main(string[] args) {
-            Console.WriteLine(CalcTaxicabDistance(1));
-            Console.WriteLine(CalcTaxicabDistance(2));
-            Console.WriteLine(CalcTaxicabDistance(5));
-            Console.WriteLine(CalcTaxicabDistance(12));
-            Console.WriteLine(CalcTaxicabDistance(23));
-            Console.WriteLine(CalcTaxicabDistance(1024));
-            Console.WriteLine(CalcTaxicabDistance(368078));
+            // PART 1
+            Console.WriteLine(CalcRootTaxicabDistance(1));
+            Console.WriteLine(CalcRootTaxicabDistance(2));
+            Console.WriteLine(CalcRootTaxicabDistance(5));
+            Console.WriteLine(CalcRootTaxicabDistance(12));
+            Console.WriteLine(CalcRootTaxicabDistance(23));
+            Console.WriteLine(CalcRootTaxicabDistance(1024));
+            Console.WriteLine(CalcRootTaxicabDistance(368078));
+
+            // PART 2
 
             Console.ReadLine();
         }
 
-        public static int CalcTaxicabDistance(int n) {
+        // PART 1
+        public static int CalcRootTaxicabDistance(int n) {
             Point q = _CalcGridPoint(n);
             return _CalcTaxicabDistance(new Point(0, 0), q);
         }
@@ -37,7 +81,6 @@ namespace Day3
         }
 
         private static Point _CalcGridPoint(int n) {
-            // 1. calc radius
             int radiusMaxValue = 1;
             int digitCountInRadius = CIRCLE_CIRCUMFERENCE;
             int radius = 0;
@@ -62,10 +105,14 @@ namespace Day3
                         
             if (diff != 0) {
                 y = Math.Abs(radius - diff);
-                //y = radius - x;
-            }             
+            }
 
             return new Point(x, y);
+        }
+
+        // PART 2
+        private int _calcNextGridValueNeighbourBased(int currentValue) {
+            return 0;
         }
     }
 }
