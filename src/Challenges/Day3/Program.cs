@@ -144,17 +144,17 @@ namespace Day3
 
         static void Main(string[] args) {
             // PART 1
-            //Console.WriteLine(CalcRootTaxicabDistance(1));
-            //Console.WriteLine(CalcRootTaxicabDistance(2));
-            //Console.WriteLine(CalcRootTaxicabDistance(5));
-            //Console.WriteLine(CalcRootTaxicabDistance(12));
-            //Console.WriteLine(CalcRootTaxicabDistance(23));
-            //Console.WriteLine(CalcRootTaxicabDistance(1024));
-            //Console.WriteLine(CalcRootTaxicabDistance(368078));
+            Console.WriteLine(CalcRootTaxicabDistance(1));
+            Console.WriteLine(CalcRootTaxicabDistance(2));
+            Console.WriteLine(CalcRootTaxicabDistance(5));
+            Console.WriteLine(CalcRootTaxicabDistance(12));
+            Console.WriteLine(CalcRootTaxicabDistance(23));
+            Console.WriteLine(CalcRootTaxicabDistance(1024));
+            Console.WriteLine(CalcRootTaxicabDistance(368078));
 
             // PART 2
-            //Console.WriteLine(CalcNextValueNeighbourBased(1));
-            //Console.WriteLine(CalcNextValueNeighbourBased(2));
+            Console.WriteLine(CalcNextValueNeighbourBased(1));
+            Console.WriteLine(CalcNextValueNeighbourBased(2));
             Console.WriteLine(CalcNextValueNeighbourBased(747));
             Console.WriteLine(CalcNextValueNeighbourBased(368078));
 
