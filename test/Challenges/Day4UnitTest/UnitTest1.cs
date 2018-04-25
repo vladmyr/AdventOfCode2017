@@ -20,19 +20,16 @@ namespace Day4UnitTest {
         [InlineData("abcde", "xyz", false)]
         [InlineData("abcde", "ecdab", true)]
         [InlineData("abcde", "abced", true)]
-        public void CalcIsAnagram(string str, string ofStr, bool expectedResult) {
-            HashSet<char> strSet = Program.ToCharHashSet(str);
-            HashSet<char> ofStrSet = Program.ToCharHashSet(ofStr);
-
-            Assert.Equal(expectedResult, Program.CalcIsAnagram(strSet, ofStrSet));
+        public void CalcIsAnagram(string input, string compareTo, bool expectedResult) {
+            Assert.Equal(expectedResult, Program.CalcIsAnagram(input, compareTo));
         }
 
         [Theory]
-        // [InlineData("abcde fghij", true)]
-        // [InlineData("abcde xyz ecdab", false)]
-        // [InlineData("a ab abc abd abf abj", true)]
+        [InlineData("abcde fghij", true)]
+        [InlineData("abcde xyz ecdab", false)]
+        [InlineData("a ab abc abd abf abj", true)]
         [InlineData("iiii oiii ooii oooi oooo", true)]
-        // [InlineData("oiii ioii iioi iiio", false)]
+        [InlineData("oiii ioii iioi iiio", false)]
         public void CalcIsValidPassphraseNoAnagram(string str, bool expectedResult) {
             Assert.Equal(expectedResult, Program.CalcIsValidPassphraseNoAnagram(str));
         }
