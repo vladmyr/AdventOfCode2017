@@ -6,4 +6,3 @@ namespace Day6 {
         }
     }
 }
-cd ,
