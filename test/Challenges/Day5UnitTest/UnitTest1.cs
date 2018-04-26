@@ -11,5 +11,12 @@ namespace Day5UnitTest {
         public void CountStepsBeforeExit(int[] input, int expectedResult) {
             Assert.Equal(expectedResult, Program.CountStepsBeforeExit(input));
         }
+
+        // Day 5, Part 2
+        [Theory]
+        [InlineData(new int[] { 0, 3, 0, 1, -3 }, 10)]
+        public void CountStepsBeforeExit2(int[] input, int expectedResult) {
+            Assert.Equal(expectedResult, Program.CountStepsBeforeExit2(input));
+        }
     }
 }
