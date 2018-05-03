@@ -7,18 +7,31 @@ namespace Day7
     public class Node {
         public string Name { get; private set; }
         public int Weight { get; set; }
+        public int TotalWeight { get; set; }
         public Node Parent { get; set; }
         public List<Node> Children { get; private set; }
 
         public Node(string name, int weight = 0, Node parent = null) {
             Name = name;
             Weight = weight;
+            TotalWeight = Weight;
             Parent = parent;
             Children = new List<Node>();
         }
 
         public void AddChild(Node child) {
             Children.Add(child);
+        }
+
+        public int CalcTotalWeight() {
+            int weight = Weight;
+
+            foreach(Node child in Children) {
+                weight += child.CalcTotalWeight();
+            }
+
+            TotalWeight = weight;
+            return weight;
         }
     }
 
@@ -28,6 +41,8 @@ namespace Day7
         private HashSet<Node> _NodeWoParentSet { get; set; }
         private SortedList<int, List<Node>> _IdxWeight { get; set; }
         private SortedList<string, Node> _IdxNode { get; set; }
+
+        public int ExpectedBalancedWeight { get; private set; } = 0;
 
         public Node RootNode { get; private set; }
 
@@ -39,6 +54,8 @@ namespace Day7
 
             _ParseInput(input);
             _SetRootNode();
+
+            RootNode.CalcTotalWeight();
         }
 
         private void _ParseInput(string[] input) {
@@ -115,6 +132,36 @@ namespace Day7
 
             RootNode = enumerator.Current;
         }
+
+        private void _CalcProperWeight(Node node) {
+            Node node1 = RootNode.Children[0];
+            Node node2 = null;
+            int index = 1;
+
+            while (ExpectedBalancedWeight == 0) {
+
+
+                // if (node1.TotalWeight != )
+                // index++;
+            }
+
+            return;
+        }
+
+        // private void _TraverseCalcOffBalance() {
+        //     int lastWeight = RootNode.Children[0].CalcTotalWeight();
+        //     int index = 1;
+
+        //     while (OffBalance == 0 && index < RootNode.Children.Count) {
+        //         Node childNode = RootNode.Children[index];
+        //         int weight = childNode.CalcTotalWeight();
+
+        //         OffBalance = Math.Abs(weight - lastWeight);
+        //         index++;
+        //     }
+
+        //     return;
+        // }
     }
 
     class Program {
@@ -123,7 +170,11 @@ namespace Day7
 
             Tree tree = new Tree(input);
 
+            // Part 1
             Console.WriteLine(tree.RootNode.Name);
+
+            // Part 2
+            Console.WriteLine(tree.OffBalance);
 
             Console.ReadKey();
         }
