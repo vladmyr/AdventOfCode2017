@@ -1,13 +1,10 @@
 using System;
 using Xunit;
 
-namespace Day8UnitTest
-{
-    public class UnitTest1
-    {
+namespace Day8UnitTest {
+    public class UnitTest1 {
         [Fact]
-        public void Test1()
-        {
+        public void Test1() {
 
         }
     }
