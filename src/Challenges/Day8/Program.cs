@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Day8 {
     public class JumpInstruction {
+        public int LargestHeld { get; private set; } = 0;
         private Dictionary<string, int> _RegisterDict { get; set; } = new Dictionary<string, int>();
 
         private void _ParseInstructions(string[] input) {
@@ -28,7 +29,12 @@ namespace Day8 {
             _CreateRegisterIfNotExist(leftComparer);
 
             if (_EvaluateConditionResult(operation, leftComparer, rightComparer)) {
-                _RegisterDict[register] = _EvaluateInstructionResult(registerInstruction, register, registerInstructionValue);
+                int value = _EvaluateInstructionResult(registerInstruction, register, registerInstructionValue);
+                _RegisterDict[register] = value;
+
+                if (value > LargestHeld) {
+                    LargestHeld = value;
+                }
             }
 
             return;
@@ -126,8 +132,8 @@ namespace Day8 {
             string[] input = File.ReadAllLines("./input.txt");
             JumpInstruction jumpInstruction = new JumpInstruction(input);
 
-            // Part 1
-            Console.WriteLine(jumpInstruction.CalcLargest());
+            Console.WriteLine(jumpInstruction.CalcLargest());   // Part 1
+            Console.WriteLine(jumpInstruction.LargestHeld);     // Part 2
         }
     }
 }
